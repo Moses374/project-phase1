@@ -29,7 +29,8 @@ function groupBreweriesByType(breweries) {
         grouped[type].push(brewery);
         return grouped;
     }, {});
-};
+}
+
 function giveBreweries(type, breweries) {
     const container = document.querySelector('.container');
 
