@@ -1,10 +1,10 @@
 const BASE_URL = 'http://localhost:3000/brewcompanies';
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchBreweries();
+    getBreweries();
 });
 
-function fetchBreweries() {
+function getBreweries() {
     fetch(`${BASE_URL}`, {
         method: 'GET',
         headers: {
@@ -29,16 +29,12 @@ function groupBreweriesByType(breweries) {
         grouped[type].push(brewery);
         return grouped;
     }, {});
-}
-
+};
 function giveBreweries(type, breweries) {
-    const row = document.querySelector('#brewery-row');
+    const container = document.querySelector('.container');
 
     const dropdownDiv = document.createElement('div');
-    dropdownDiv.classList.add('col');
-
-    const dropdownContainer = document.createElement('div');
-    dropdownContainer.classList.add('dropdown');
+    dropdownDiv.classList.add('dropdown');
 
     const toggleButton = document.createElement('button');
     toggleButton.classList.add('btn', 'btn-secondary', 'dropdown-toggle');
@@ -48,6 +44,7 @@ function giveBreweries(type, breweries) {
     toggleButton.textContent = type;
 
     const dropdownMenu = document.createElement('ul');
+    
     dropdownMenu.classList.add('dropdown-menu');
 
     breweries.forEach((brewery) => {
@@ -62,8 +59,8 @@ function giveBreweries(type, breweries) {
         dropdownMenu.appendChild(breweryItem);
     });
 
-    dropdownContainer.appendChild(toggleButton);
-    dropdownContainer.appendChild(dropdownMenu);
-    dropdownDiv.appendChild(dropdownContainer);
-    row.appendChild(dropdownDiv);
+    dropdownDiv.appendChild(toggleButton);
+    dropdownDiv.appendChild(dropdownMenu);
+
+    container.appendChild(dropdownDiv);
 }
